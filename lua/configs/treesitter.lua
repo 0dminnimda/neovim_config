@@ -1,19 +1,10 @@
---[[return {
-  -- event = { "LazyFile", "VeryLazy" },
-  lazy = false,
-  ensure_installed = {
-  	"vim", "lua", "vimdoc",
-    "python", "c", "cpp",
-    -- "html", "css"
-  },
-}]]--
-
 local options = require("nvchad.configs.treesitter")
 
-thl = require("nvim-treesitter.highlight")
+-- thl = require("nvim-treesitter.highlight")
 
---[[thl.set_custom_captures {
-  ["foo.bar"] = "Identifier",
+--thl
+--[[require"nvim-treesitter.highlight".set_custom_captures {
+  ["constant.builtin.ellipsis"] = "@constant.builtin.ellipsis",
 }]]--
 
 options.ensure_installed = {
@@ -30,6 +21,11 @@ options.ensure_installed = {
   },
 
   indent = { enable = true },
+]]--
+
+--[[
+custom_captures = {
+  ["return"] = "YourCustomHighlightGroup",
 ]]--
 
 return options

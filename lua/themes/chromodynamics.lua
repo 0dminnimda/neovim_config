@@ -37,13 +37,43 @@ M.base_30 = {
   folder_bg     = "#6792CA",
 }
 
+--[[
+my textmate extention
+        "[Chromodynamics]": {
+            "comments": "#33cc33",
+            "textMateRules": [
+                {
+                    "scope": "comment",
+                    "settings": {
+                        "foreground": "#33cc33",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": [
+                        "variable.language.special",
+                        "variable.parameter.function.language.special",
+                    ],
+                    "settings": {
+                        "foreground": "#c9c8b6",
+                        "fontStyle": "italic bold",
+                    },
+                }
+            ]
+        }
+]]--
+
+local my_version = true
+
 local back      = "#060606"  -- background
 local fore      = "#C6C6C6"  -- foreground
 local select    = "#252525"
-local ident     = "#FFFFFF"  -- identifier
+local ident     = fore       -- identifier
 local spec_id   = "#B0AF95"  -- special identifier, only 'self' and 'cls' AFAIK
-local comment   = "#1CB715"
+local spec_id_full = { fg = spec_id }
 local invis     = "#3B3A32"
+local comment   = invis
+local comment_full = { fg = comment }
 local const     = "#9A79D7"
 local decl_kw   = "#66D9EF"  -- declaration keyword
 local builtin   = decl_kw
@@ -56,20 +86,25 @@ local tag_attr  = "#D77C23"  -- still not quite sure ...
 local depr_back = "#99732b"  -- deprecated background
 local depr_fore = "#F8F8F0"  -- deprecated foreground
 local str       = "#D3C970"
--- "#B0AF95"
--- "#66D9EF"
--- #60A1B2
--- #A6E22E
--- #66D9EF
+local hint      = "#868686"
+local status_bg = "#131313"
+local status_fg = fore
 
+-- #60A1B2
+if my_version then
+  comment       = "#33cc33"
+  comment_full  = { fg = comment, bold = true }
+  spec_id       = "#C9C7B7"  -- actually #C9C8B6
+  spec_id_full  = { fg = spec_id, bold = true }  -- should be italic, but it cuts off in termux
+end
 
 -- syntax highlighting
 M.base_16 = {
   base00 = back     , -- Default Background
-  base01 = "#131313", -- Lighter Background (Used for status bars, line number and folding marks)
+  base01 = status_bg, -- Lighter Background (Used for status bars, line number and folding marks)
   base02 = select   , -- Selection Background
   base03 = invis    , -- ~~Comments~~, Invisibles, Line Highlighting
-  base04 = fore     , -- Dark Foreground (Used for status bars)
+  base04 = status_fg, -- Dark Foreground (Used for status bars)
   base05 = fore     , -- Default Foreground, Caret, Delimiters, Operators
   base06 = fore     , -- Light Foreground (Not often used)
   base07 = "#090909", -- Light Background (Not often used)
@@ -88,7 +123,7 @@ M.base_16 = {
 --      ^ each file here can become a key in this table
 M.polish_hl = {
   defaults = {
-    Comment = { fg = comment },
+    Comment = comment_full,
   },
 
   syntax = {
@@ -97,15 +132,16 @@ M.polish_hl = {
   },
 
   lsp = {
-    DiagnosticHint = { fg = invis },
-    DiagnosticUnnecessary = { fg = invis },
+    DiagnosticHint = { fg = hint },
+    DiagnosticUnnecessary = { fg = hint },
   },
 
   -- SEE: https://github.com/nvim-treesitter/nvim-treesitter/tree/master/queries/python
   -- SEE: https://github.com/tree-sitter/tree-sitter-python/tree/master/queries
   treesitter = {
-    ["@comment"] = { fg = comment },
+    ["@comment"] = comment_full,
     ["@constant"] = { fg = const },
+    ["@constant.builtin.ellipsis"] = { fg = const },
 
     ["@keyword"] = { fg = flow_kw },
     ["@keyword.function"] = { fg = decl_kw },
@@ -116,8 +152,12 @@ M.polish_hl = {
     ["@definition.class"] = { fg = decl_kw },
 
     ["@function.builtin"] = { fg = builtin },
-    ["@variable.builtin"] = { fg = spec_id, italic = true },
+    ["@variable.builtin"] = spec_id_full,
+
     ["@type.builtin"] = { fg = builtin },
+    ["@constant.builtin"] = { fg = builtin },
+
+    ["@constructor"] = { link = "Type" },
   },
 }
 
