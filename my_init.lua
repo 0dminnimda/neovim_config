@@ -11,6 +11,6 @@ vim.opt.listchars:append({
 vim.opt.list = true
 ]]--
 
-vim.api.nvim_set_hl(0, "EoLSpace", { bg="#FF0000" })
-vim.fn.matchadd("EoLSpace", "\\s\\+$")
+vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg="#FF0000" })
+vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 
