@@ -5,3 +5,12 @@
 
 (ellipsis) @ellipsis
 
+(class_definition
+  name: (identifier) @type.definition)
+
+(class_definition
+  superclasses: (argument_list
+    (identifier) @type.inherited))
+
+; TODO: builtin version of @variable.member
+

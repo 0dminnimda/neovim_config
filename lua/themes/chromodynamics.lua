@@ -55,8 +55,11 @@ local flow_kw   = "#E8364F"  -- control flow keyword
 local operator  = flow_kw
 local include   = flow_kw    -- include / import
 local decl_ref  = "#A6E22E"  -- reference to declared name, like function or class
+local def_func  = decl_ref   -- name in the function definition / declaration
+local def_clas  = decl_ref   -- name in the class definition / declaration
 local tag       = "#D33C78"  -- not sure what it is ...
 local tag_attr  = "#D77C23"  -- still not quite sure ...
+local arg       = "#E99C42"  -- function argument
 local depr_back = "#99732b"  -- deprecated background
 local depr_fore = "#F8F8F0"  -- deprecated foreground
 local str       = "#D3C970"
@@ -96,6 +99,7 @@ M.base_16 = {
 -- SEE: https://github.com/NvChad/base46/tree/v2.0/lua/base46/integrations
 --      ^ each file here can become a key in this table
 M.polish_hl = {
+  -- TODO: probably better to link some of the repeating 'groupped' ones
   defaults = {
     Comment = comment_full,
   },
@@ -123,13 +127,24 @@ M.polish_hl = {
     ["@keyword.repeat"] = { fg = flow_kw },
     ["@keyword.return"] = { fg = flow_kw },
     ["@keyword.type"] = { fg = decl_kw },
-    ["@definition.class"] = { fg = decl_kw },
+    -- doesn't seem to exits ["@definition.class"] = { fg = decl_kw },
 
-    ["@function.builtin"] = { fg = builtin },
-    ["@variable.builtin"] = spec_id_full,
+    ["@operator"] = { fg = operator },
 
     ["@type.builtin"] = { fg = builtin },
     ["@constant.builtin"] = { fg = builtin },
+    ["@attribute.builtin"] = { fg = builtin },
+    ["@function.builtin"] = { fg = builtin },
+
+    ["@variable.builtin"] = spec_id_full,
+
+    ["@variable.parameter"] = { fg = arg },
+
+    ["@function"] = { fg = decl_ref },
+    ["@function.method"] = { fg = decl_ref },
+    ["@type.inherited"] = { fg = decl_ref },
+
+    ["@type.definition"] = { link = "@variable" },  -- fore, by default
 
     ["@constructor"] = { link = "Type" },
   },
