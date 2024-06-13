@@ -6,8 +6,6 @@ return {
       require "configs.conform"
     end,
   },
-
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -31,24 +29,10 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
     opts = function()
       return require "configs.treesitter"
     end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
-      require("nvim-treesitter.configs").setup(opts)
-    end,
   },
-  --[[{
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = function()
-      return require("configs.treesitter")
-    end,
-  },]]--
   {
     "jose-elias-alvarez/null-ls.nvim",
     ft = {"python"},
