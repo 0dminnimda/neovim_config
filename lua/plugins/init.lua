@@ -29,6 +29,9 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "HiPhish/rainbow-delimiters.nvim",
+    },
     opts = function()
       return require "configs.treesitter"
     end,
@@ -76,4 +79,20 @@ return {
       end
     end,
   },
+  {
+    "L3MON4D3/LuaSnip",
+    enable = false,
+  },
+  {
+    "rafamadriz/friendly-snippets",
+    enable = false,
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    -- opts = function()
+    config = function()
+      require "configs.rainbow-delimiters"
+    end,
+  },
 }
+

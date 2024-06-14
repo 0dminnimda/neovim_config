@@ -76,6 +76,7 @@ if my_version then
 end
 
 -- syntax highlighting
+-- SEE: https://github.com/chriskempson/base16/blob/master/styling.md
 M.base_16 = {
   base00 = back     , -- Default Background
   base01 = status_bg, -- Lighter Background (Used for status bars, line number and folding marks)
@@ -96,10 +97,15 @@ M.base_16 = {
 }
 
 -- Fine tune the highlighting
--- SEE: https://github.com/NvChad/base46/tree/v2.0/lua/base46/integrations
---      ^ each file here can become a key in this table
 M.polish_hl = {
+  ---------------------------
+  -- built in integrations --
+  ---------------------------
+  -- SEE: https://github.com/NvChad/base46/tree/v2.5/lua/base46/integrations
+  --      ^ each file here can become a key in this table
+
   -- TODO: probably better to link some of the repeating 'groupped' ones
+
   defaults = {
     Comment = comment_full,
   },
@@ -148,6 +154,39 @@ M.polish_hl = {
 
     ["@constructor"] = { link = "Type" },
   },
+
+  ------------------------------------
+  -- extended integrations          --
+  -- to enable, add to chadrc.lua:  --
+  --   M.base46.integrations        --
+  ------------------------------------
+
+  -- VSCode uses:
+  -- #FED701, #DA70D5, #169FFF or #189FED
+  -- Simple Complementary Colors:
+  -- #FFFF00, #00FF80, #0000FF, #FF0080
+  -- #FFB000, #00FF30, #004FFF, #FF00CF
+  -- #FF5757, #ABFF57, #57FFFF, #AB57FF
+  -- #FF5757, #57FF57, #5757FF
+  -- #FFB000, #00FFB0, #B000FF
+  -- #A0FF00, #00A0FF, #FF00A0
+  -- #FFFF00, #00FFFF, #FF00FF
+  rainbowdelimiters = {
+    RainbowDelimiterRed = { fg = "#FFFF00" },  -- just first color
+    RainbowDelimiterYellow = { fg = "#00FF80" },  -- second
+    RainbowDelimiterBlue = { fg = "#004FFF" },  -- third
+    RainbowDelimiterOrange = { fg = "#FF0080" },  -- fourth
+    -- repeat the main colors, in case the config for this extension was not updated
+    RainbowDelimiterGreen = { link = "RainbowDelimiterRed" },
+    RainbowDelimiterViolet = { link = "RainbowDelimiterYellow" },
+    RainbowDelimiterCyan = { link = "RainbowDelimiterBlue" },
+  },
+}
+
+-- Fine tune the highlighting (for v2.0 - extended integrations)
+-- https://github.com/NvChad/base46/tree/v2.0/lua/base46/extended_integrations
+M.polish_hl.extended_integrations = {
+  rainbowdelimiters = M.polish_hl.rainbowdelimiters,
 }
 
 M.type = "dark"

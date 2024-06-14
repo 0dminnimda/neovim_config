@@ -55,5 +55,13 @@ M.ui = {
 
 -- fg = theme.base0B,
 
+-- Allows for base46 to handle "extended integrations"
+-- By default only built in integrations take effect
+M.base46 = {
+  integrations = {
+    "rainbowdelimiters",
+  },
+}
+
 return M
 
