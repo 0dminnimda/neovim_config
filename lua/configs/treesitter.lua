@@ -2,6 +2,7 @@ local options = require("nvchad.configs.treesitter")
 
 vim.list_extend(options.ensure_installed, {
   "python", "c", "cpp",
+  "regex", "comment",
 })
 
 --[[

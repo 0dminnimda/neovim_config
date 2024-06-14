@@ -51,6 +51,7 @@ local comment_full = { fg = comment }
 local const     = "#9A79D7"
 local decl_kw   = "#66D9EF"  -- declaration keyword
 local builtin   = decl_kw
+local regex_esc = decl_kw    -- escape inside regular expression
 local flow_kw   = "#E8364F"  -- control flow keyword
 local operator  = flow_kw
 local include   = flow_kw    -- include / import
@@ -153,6 +154,7 @@ M.polish_hl = {
     ["@type.definition"] = { link = "@variable" },  -- fore, by default
 
     ["@constructor"] = { link = "Type" },
+    ["@string.escape.regex"] = { fg = regex_esc },
   },
 
 }
