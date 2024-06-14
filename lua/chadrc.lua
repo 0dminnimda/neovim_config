@@ -1,4 +1,4 @@
--- This file  needs to have same structure as nvconfig.lua 
+-- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
@@ -14,7 +14,7 @@ M.ui = {
     Visual = { bg = "#252525" }, --guibg=white gui=nocursor
 
     -- Function = { fg = "#A6E22E" },
-    -- ["@function"] = { fg = "#A6E22E" }, 
+    -- ["@function"] = { fg = "#A6E22E" },
 
     -- ["@definition.function"] = { fg = "#66D9EF" },
     -- ["@definition.class"] = { fg = "#66D9EF" },
@@ -39,21 +39,14 @@ M.ui = {
     ["@string"] = { fg = "#D3C970" },
     ["@string.special.url"] = { fg = "#D3C970", underline = true },
 
-    Constant = { fg = "#9a79d7" }, 
+    Constant = { fg = "#9a79d7" },
     ["@number"] = { fg = "#9a79d7" },
     ["@constant"] = { fg = "#9a79d7" },
     ["@boolean"] = { fg = "#9a79d7" },
     -- ["@constant.builtin"] = { fg = "#9a79d7" },
   },
   ]]--
-
-  -- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
 }
-
--- fg = theme.base0B,
 
 return M
 

@@ -1,18 +1,8 @@
 local options = require("nvchad.configs.treesitter")
 
--- thl = require("nvim-treesitter.highlight")
-
---thl
---[[require"nvim-treesitter.highlight".set_custom_captures {
-  ["constant.builtin.ellipsis"] = "@constant.builtin.ellipsis",
-}]]--
-
-options.ensure_installed = {
-  "vim", "vimdoc",
-  "lua", "luadoc",
-  -- why? "printf",
+vim.list_extend(options.ensure_installed, {
   "python", "c", "cpp",
-}
+})
 
 --[[
   highlight = {
@@ -21,11 +11,6 @@ options.ensure_installed = {
   },
 
   indent = { enable = true },
-]]--
-
---[[
-custom_captures = {
-  ["return"] = "YourCustomHighlightGroup",
 ]]--
 
 return options
