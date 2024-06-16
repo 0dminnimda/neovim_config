@@ -127,6 +127,7 @@ M.polish_hl = {
     ["@comment"] = comment_full,
     ["@constant"] = { fg = const },
     ["@ellipsis"] = { fg = const },
+    ["@none"] = { fg = const },
 
     ["@keyword"] = { fg = flow_kw },
     ["@keyword.function"] = { fg = decl_kw },

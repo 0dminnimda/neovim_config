@@ -12,6 +12,7 @@
 ; also check out :InspectTree
 
 (ellipsis) @ellipsis
+(none) @none
 
 (class_definition
   name: (identifier) @type.definition)
