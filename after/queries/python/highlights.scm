@@ -4,8 +4,8 @@
 ; SEE: https://github.com/nvim-treesitter/nvim-treesitter#highlight
 
 ; Good references:
-; https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/queries/python/
-; https://raw.githubusercontent.com/tree-sitter/tree-sitter-python/master/queries/
+; https://github.com/nvim-treesitter/nvim-treesitter/tree/master/queries/python
+; https://github.com/tree-sitter/tree-sitter-python/tree/master/queries/
 
 ; How this works:
 ; SEE: https://tree-sitter.github.io/tree-sitter/using-parsers#query-syntax
