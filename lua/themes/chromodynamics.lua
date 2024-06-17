@@ -140,9 +140,10 @@ M.polish_hl = {
     ["@operator"] = { fg = operator },
 
     ["@type.builtin"] = { fg = builtin },
-    ["@constant.builtin"] = { fg = builtin },
     ["@attribute.builtin"] = { fg = builtin },
     ["@function.builtin"] = { fg = builtin },
+    ["@constant.builtin"] = { fg = ident },  -- we sacrifice this non-custom
+    ["@dunder.builtin"] = { fg = builtin },  -- to have this better, but custon query
 
     ["@variable.builtin"] = spec_id_full,
 
