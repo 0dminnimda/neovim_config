@@ -16,7 +16,7 @@ end)
 
 local all_modes = {"i", "c", "v", "x", "s", "o", "t", "l"}
 
--- map("n", "<S-b>", "<C-v>", { noremap = true })
+map({"n", "v"}, "<S-b>", "<C-v>", { noremap = true })
 -- vim.api.nvim_set_keymap('n', '<S-B>', '<C-V>', {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<S-b>', '<C-v>', { noremap = true, silent = true })
 
