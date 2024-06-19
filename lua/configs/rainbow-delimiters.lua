@@ -14,7 +14,7 @@ local colors = {"#FFFF00", "#00FF80", "#004FFF", "#FF0080"}
 
 local names = {}
 for i, color in ipairs(colors) do
-  name = "RainbowDelimiter" .. i
+  local name = "RainbowDelimiter" .. i
   names[i] = name
   vim.api.nvim_set_hl(0, name, { fg = color })
 end
