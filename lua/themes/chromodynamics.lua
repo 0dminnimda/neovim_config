@@ -76,6 +76,11 @@ if my_version then
   spec_id_full  = { fg = spec_id, bold = true }  -- should be italic, but it cuts off in termux
 end
 
+-- markdown
+local heading = "#47a1f7" -- "#569cd6" -- "#8cd3ff" -- "#96ffff"
+local md_raw_bg = "#2e2e2e" -- +40 to each channel in `back`
+local url = heading
+
 -- syntax highlighting
 -- SEE: https://github.com/chriskempson/base16/blob/master/styling.md
 M.base_16 = {
@@ -158,6 +163,13 @@ M.polish_hl = {
 
     ["@constructor"] = { link = "Type" },
     ["@string.escape.regex"] = { fg = regex_esc },
+
+    -- markdown
+    ["@markup.heading"] = { fg = heading, bold = true },
+    ["@markup.raw.markdown_inline"] = { bg = md_raw_bg },
+    ["@markup.link.url"] = { fg = url, underline = true },
+    ["@markup.raw"] = { fg = fore },
+    ["@markup.fenced_code_block_delimiter"] = { bg = md_raw_bg },
   },
 
 }
