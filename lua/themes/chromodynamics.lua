@@ -135,6 +135,7 @@ M.polish_hl = {
     ["@none"] = { fg = const },
 
     ["@keyword"] = { fg = flow_kw },
+    ["@keyword.exception"] = { fg = flow_kw },
     ["@keyword.function"] = { fg = decl_kw },
     ["@keyword.conditional"] = { fg = flow_kw },
     ["@keyword.repeat"] = { fg = flow_kw },
