@@ -5,6 +5,7 @@ vim.list_extend(options.ensure_installed, {
   "regex", "comment",
   "markdown", "markdown_inline",
   "html",
+  "verilog", "systemverilog",
 })
 
 --[[

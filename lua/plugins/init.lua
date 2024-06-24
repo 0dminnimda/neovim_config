@@ -24,6 +24,8 @@ return {
   			"lua-language-server",
         -- "stylua",
   		  -- "html-lsp", "css-lsp" , "prettier"
+        -- "clangd",  -- you will have it if you have clang
+        -- "hdl-checker", -- from pip
   	  },
     },
   },
