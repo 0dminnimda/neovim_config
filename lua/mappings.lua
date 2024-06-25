@@ -11,7 +11,7 @@ map("n", "<leader>br", "<cmd> DapToggleBreakpoint <CR>")
 
 -- dap_python
 map("n", "<leader>rpd", function()
-  require("dap-python").test_method()
+    require("dap-python").test_method()
 end)
 
 local all_modes = {"i", "c", "v", "x", "s", "o", "t", "l"}
@@ -32,4 +32,8 @@ map("v", "<leader>/", "gc", { desc = "comment toggle" })
 
 -- local mode_info = vim.api.nvim_get_mode()
 -- print(mode_info.mode)
+
+map({"n", "v"}, "<leader>s", function()
+    vim.lsp.diagnostic.show_line_diagnostics()
+end)
 

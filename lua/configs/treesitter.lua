@@ -5,7 +5,7 @@ vim.list_extend(options.ensure_installed, {
   "regex", "comment",
   "markdown", "markdown_inline",
   "html",
-  "verilog", "systemverilog",
+  "verilog", -- "systemverilog", causes errors, because of quotes in files
 })
 
 --[[

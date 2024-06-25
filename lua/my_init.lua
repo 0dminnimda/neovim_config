@@ -20,6 +20,12 @@ vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 -- vim.api.nvim_set_hl(0, "UrlString", { underline=true })
 -- vim.fn.matchadd("UrlString", [[(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*]])
 
+-- don't show '~' for lines after EOF
+local term_back = vim.api.nvim_get_hl_by_name("Normal", true).background
+vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = term_back })
 
 vim.opt.relativenumber = true
+
+-- force single statusline for all windows
+vim.o.laststatus = 3
 
