@@ -33,7 +33,22 @@ map("v", "<leader>/", "gc", { desc = "comment toggle" })
 -- local mode_info = vim.api.nvim_get_mode()
 -- print(mode_info.mode)
 
-map({"n", "v"}, "<leader>s", function()
-    vim.lsp.diagnostic.show_line_diagnostics()
-end)
+-- continuation of diagrantics from my_init.lua
 
+-- Show all diagnostics on current line in floating window
+map(
+  'n', '<leader>s', ':lua vim.diagnostic.open_float()<CR>',
+  { noremap = true, silent = true }
+)
+-- Go to next diagnostic (if there are multiple on the same line, only shows
+-- one at a time in the floating window)
+map(
+  'n', '<leader>n', ':lua vim.diagnostic.goto_next()<CR>',
+  { noremap = true, silent = true }
+)
+-- Go to prev diagnostic (if there are multiple on the same line, only shows
+-- one at a time in the floating window)
+map(
+  'n', '<leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
+  { noremap = true, silent = true }
+)

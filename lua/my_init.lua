@@ -20,13 +20,39 @@ vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 -- vim.api.nvim_set_hl(0, "UrlString", { underline=true })
 -- vim.fn.matchadd("UrlString", [[(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*]])
 
+
 -- don't show '~' for lines after EOF
 local term_back = vim.api.nvim_get_hl_by_name("Normal", true).background
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = term_back })
 
+
 vim.opt.number = true
 vim.opt.relativenumber = true
+-- to put them on the same line you can use "luukvbaal/statuscol.nvim"
+
 
 -- force single statusline for all windows
 vim.o.laststatus = 3
+
+
+-- diagnostics
+vim.diagnostic.config({
+  virtual_text = false, -- Turn off inline diagnostics
+})
+
+-- Use this if you want it to automatically show all diagnostics on the
+-- current line in a floating window. Personally, I find this a bit
+-- distracting and prefer to manually trigger it (see below). The
+-- CursorHold event happens when after `updatetime` milliseconds. The
+-- default is 4000 which is much too long
+vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
+vim.o.updatetime = 300
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
+
+-- diagnostics continued in mappings.lua
 
