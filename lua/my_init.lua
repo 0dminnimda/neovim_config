@@ -24,6 +24,7 @@ vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 local term_back = vim.api.nvim_get_hl_by_name("Normal", true).background
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = term_back })
 
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- force single statusline for all windows
