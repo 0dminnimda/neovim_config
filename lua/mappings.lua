@@ -10,9 +10,7 @@ map("i", "jk", "<ESC>")
 map("n", "<leader>br", "<cmd> DapToggleBreakpoint <CR>")
 
 -- dap_python
-map("n", "<leader>rpd", function()
-    require("dap-python").test_method()
-end)
+map("n", "<leader>rpd", "<cmd> DapPythonStart <CR>")
 
 local all_modes = {"i", "c", "v", "x", "s", "o", "t", "l"}
 

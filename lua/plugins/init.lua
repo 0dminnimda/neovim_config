@@ -245,14 +245,18 @@ return {
   },
   {
     "mfussenegger/nvim-dap-python",
+    cmd = { "DapPythonStart" },
     ft = {"python"},
     dependencies = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
     },
     config = function(_, opts)
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
+      require("dap-python").setup("python")
+
+      vim.api.nvim_create_user_command("DapPythonStart", function()
+        require('dap').continue()
+      end, {})
     end,
   },
   {
