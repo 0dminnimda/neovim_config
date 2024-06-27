@@ -52,6 +52,7 @@ local const     = "#9A79D7"
 local decl_kw   = "#66D9EF"  -- declaration keyword
 local builtin   = decl_kw
 local regex_esc = decl_kw    -- escape inside regular expression
+local fstr_op   = decl_kw    -- f"{5!r}" - !r in here
 local flow_kw   = "#E8364F"  -- control flow keyword
 local operator  = flow_kw
 local include   = flow_kw    -- include / import
@@ -164,6 +165,7 @@ M.polish_hl = {
 
     ["@constructor"] = { link = "Type" },
     ["@string.escape.regex"] = { fg = regex_esc },
+    ["@function.macro"] = { fg = fstr_op },
 
     -- markdown
     ["@markup.heading"] = { fg = heading, bold = true },
