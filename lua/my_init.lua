@@ -34,6 +34,11 @@ vim.opt.relativenumber = true
 -- force single statusline for all windows
 vim.o.laststatus = 3
 
+-- default to convert tab to 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.bo.softtabstop = 4
 
 -- diagnostics
 vim.diagnostic.config({
