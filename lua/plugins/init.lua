@@ -131,12 +131,10 @@ return {
       "HiPhish/rainbow-delimiters.nvim",
     },
     opts = function()
-      return require "configs.treesitter"
+      return require "configs.treesitter".opts()
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
-      require("nvim-treesitter.configs").setup(opts)
+      return require "configs.treesitter".config(_, opts)
     end,
   },
   {
