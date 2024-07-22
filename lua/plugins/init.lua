@@ -119,12 +119,8 @@ return {
     dependencies = {
       "HiPhish/rainbow-delimiters.nvim",
     },
-    opts = function()
-      return require "configs.treesitter".opts()
-    end,
-    config = function(_, opts)
-      return require "configs.treesitter".config(_, opts)
-    end,
+    opts = require "configs.treesitter".opts,
+    config = require "configs.treesitter".config,
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
