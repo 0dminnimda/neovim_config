@@ -59,5 +59,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
--- diagnostics continued in mappings.lua
+-- diagnostics continued in mappings.lua --
+
+-- Good defaults for search ('/')
+vim.o.smartcase = true
+vim.o.ignorecase = true
 
