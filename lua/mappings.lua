@@ -35,20 +35,27 @@ map("v", "<leader>/", "gc", { desc = "comment toggle" })
 
 -- Show all diagnostics on current line in floating window
 map(
-    'n', '<leader>s', function() vim.diagnostic.open_float() end,
-    { noremap = true, silent = true }
+    'n', '<leader>s', function()
+        vim.diagnostic.open_float({ focus=false })
+    end, { noremap = true, silent = true }
 )
 -- Go to next diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
 map(
     'n', '<leader>n', function()
-        vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+        vim.diagnostic.goto_next({
+            severity = { min = vim.diagnostic.severity.WARN },
+            float = { focus = false },
+        })
     end, { noremap = true, silent = true }
 )
 -- Go to prev diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
 map(
     'n', '<leader>p', function()
-        vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+        vim.diagnostic.goto_prev({
+            severity = { min = vim.diagnostic.severity.WARN },
+            float = { focus = false },
+        })
     end, { noremap = true, silent = true }
 )

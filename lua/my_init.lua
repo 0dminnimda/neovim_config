@@ -42,7 +42,7 @@ vim.bo.softtabstop = 4
 
 -- diagnostics
 vim.diagnostic.config({
-  virtual_text = false, -- Turn off inline diagnostics
+    virtual_text = false, -- Turn off inline diagnostics
 })
 
 -- Use this if you want it to automatically show all diagnostics on the
@@ -50,7 +50,7 @@ vim.diagnostic.config({
 -- distracting and prefer to manually trigger it (see below). The
 -- CursorHold event happens when after `updatetime` milliseconds. The
 -- default is 4000 which is much too long
-vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
+vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float({ focus=false })')
 vim.o.updatetime = 300
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
