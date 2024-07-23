@@ -1,5 +1,20 @@
 local M = {}
 
+-- I tried ...
+--[[
+function M.init()
+    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+
+    parser_config.systemverilog = {
+        install_info = {
+            url = "https://github.com/0dminnimda/tree-sitter-systemverilog.git",
+            files = { "src/parser.c" },
+            branch = 'fix_filenames',
+        },
+    }
+end
+]]--
+
 function M.opts()
     local options = require("nvchad.configs.treesitter")
 
