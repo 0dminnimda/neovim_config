@@ -3,6 +3,9 @@
 ---@type Base46Table
 local M = {}
 
+local my_version = true
+local light = false
+
 -- general UI
 M.base_30 = {
   white         = "#ced4df",
@@ -37,11 +40,33 @@ M.base_30 = {
   folder_bg     = "#6792CA",
 }
 
-local my_version = true
+if light then
+  M.base_30.white         = "#311b20"
+  M.base_30.darker_black  = "#faf6f1"
+  M.base_30.black         = "#f8f9f9"
+  M.base_30.black2        = "#ebe7e2"
+  M.base_30.one_bg        = "#e2e0da"
+  M.base_30.one_bg2       = "#dbd7d2"
+  M.base_30.one_bg3       = "#d3d1cb"
+  M.base_30.grey          = "#ccc8c3"
+  M.base_30.grey_fg       = "#c1bfb9"
+  M.base_30.grey_fg2      = "#b8b6b0"
+  M.base_30.light_grey    = "#aba7a2"
+  M.base_30.line          = "#dadada"
+  M.base_30.statusline_bg = "#ececec"
+  M.base_30.lightbg       = "#dbd7d2"
+  M.base_30.green         = "#90C030"
+  M.base_30.vibrant_green = "#A0D040"
+end
 
 local back      = "#060606"  -- background
 local fore      = "#C6C6C6"  -- foreground
 local select    = "#252525"
+if light then
+    fore, back = back, fore
+    select = "#A0A0A0"
+end
+
 local ident     = fore       -- identifier
 local spec_id   = "#B0AF95"  -- special identifier, only 'self' and 'cls' AFAIK
 local spec_id_full = { fg = spec_id }
