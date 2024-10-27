@@ -4,12 +4,13 @@ function M.opts()
     local options = require("nvchad.configs.treesitter")
 
     vim.list_extend(options.ensure_installed, {
-      "python", "c", "cpp",
-      "regex", "comment",
-      "markdown", "markdown_inline",
-      "html",
-      "verilog",
-      "systemverilog",
+        "python", "c", "cpp",
+        "regex", "comment",
+        "markdown", "markdown_inline",
+        "html",
+        "verilog",
+        "systemverilog",
+        "v"
     })
 
     options.additional_vim_regex_highlighting = true
