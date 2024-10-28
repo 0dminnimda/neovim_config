@@ -6,11 +6,12 @@ function M.opts()
     vim.list_extend(options.ensure_installed, {
         "python", "c", "cpp",
         "regex", "comment",
+        "nim",
         "markdown", "markdown_inline",
         "html",
-        "verilog",
-        "systemverilog",
-        "v"
+        -- "verilog",
+        -- "systemverilog",
+        -- "v",
     })
 
     options.additional_vim_regex_highlighting = true
