@@ -7,7 +7,7 @@ from_pip = {
 
 options.ensure_installed = {
     -- "ruff",  -- not always compiles, and even if does, it takes ages, but looks promissing
-    "lua-language-server",
+    -- "lua-language-server",  -- also don't care
     -- "stylua",  -- who cares?
     -- "html-lsp", "css-lsp" , "prettier"
     -- "clangd",  -- you will have it if you have clang
