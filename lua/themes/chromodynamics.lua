@@ -145,6 +145,11 @@ M.polish_hl = {
   syntax = {
     -- Type
     Include = { fg = include },
+    Statement = { fg = flow_kw },
+    Operator = { fg = operator },
+    Constant = { fg = const },
+    ["odinAddressOf"] = { link = "Operator" },
+    ["odinDeref"] = { link = "Operator" },
   },
 
   lsp = {
