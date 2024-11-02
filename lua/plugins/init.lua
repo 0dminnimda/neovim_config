@@ -130,36 +130,7 @@ return {
   },
 
   -- lsp
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-    opts = function()
-      return require "configs.mason"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "mason")
-      require("mason").setup(opts)
-
-      -- custom nvchad cmd to install all mason binaries listed
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed and #opts.ensure_installed > 0 then
-          vim.cmd "Mason"
-          local mr = require("mason-registry")
-
-          mr.refresh(function()
-            for _, tool in ipairs(opts.ensure_installed) do
-              local p = mr.get_package(tool)
-              if not p:is_installed() then
-                p:install()
-              end
-            end
-          end)
-        end
-      end, {})
-
-      vim.g.mason_binaries_list = opts.ensure_installed
-    end,
-  },
+  --[[
   {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
@@ -168,24 +139,17 @@ return {
       require "configs.lspconfig"
     end,
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = {"python"},
-    opts = function()
-      return require "configs.null-ls"
-    end,
-  },
+  ]]--
 
   -- completion
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      -- "windwp/nvim-autopairs",
       -- cmp sources plugins
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
+      -- "saadparwaiz1/cmp_luasnip",
+      -- "hrsh7th/cmp-nvim-lua",
+      -- "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
     },
@@ -203,64 +167,6 @@ return {
     config = function(_, opts)
       require("luasnip").config.set_config(opts)
       require "nvchad.configs.luasnip"
-    end,
-  },
-  -- autopairing of (){}[] etc
-  -- it didn't work for my somehow ..? but for now I don't need it
-  -- {
-  --   "windwp/nvim-autopairs",
-  --   opts = {
-  --     fast_wrap = {},
-  --     disable_filetype = { "TelescopePrompt", "vim" },
-  --   },
-  --   config = function(_, opts)
-  --     require("nvim-autopairs").setup(opts)
-
-  --     -- setup cmp for autopairs
-  --     local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-  --     require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  --   end,
-  -- },
-
-  -- debugging
-  {
-    "mfussenegger/nvim-dap",
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    cmd = { "DapPythonStart" },
-    ft = {"python"},
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function(_, opts)
-      require("dap-python").setup("python")
-
-      vim.api.nvim_create_user_command("DapPythonStart", function()
-        require('dap').continue()
-      end, {})
-    end,
-  },
-  {
-    "nvim-neotest/nvim-nio",
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup()
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
     end,
   },
 }

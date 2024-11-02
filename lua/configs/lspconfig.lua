@@ -1,4 +1,3 @@
--- EXAMPLE
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -19,13 +18,4 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
---[[
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  cmd = { vim.fn.stdpath("data") .. "/mason/packages/lua-language-server/bin/lua-language-server" },
-}
-]]--
 
