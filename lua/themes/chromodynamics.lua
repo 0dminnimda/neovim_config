@@ -164,6 +164,7 @@ M.polish_hl = {
     ["@constant"] = { fg = const },
     ["@ellipsis"] = { fg = const },
     ["@none"] = { fg = const },
+    ["@null"] = { fg = const },
 
     ["@keyword"] = { fg = flow_kw },
     ["@keyword.exception"] = { fg = flow_kw },
