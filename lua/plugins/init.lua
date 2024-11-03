@@ -110,10 +110,14 @@ return {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
+      require("configs.lspconfig").defaults()
     end,
   },
+{
+  "stevearc/conform.nvim",
+    opts = require("configs.conform").opts,
+    config = require("configs.conform").config,
+},
 
   -- completion
   {
