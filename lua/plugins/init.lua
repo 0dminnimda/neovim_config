@@ -1,37 +1,10 @@
--- Extended from https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/plugins/init.lua
-
 return {
-  -- nvchad
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-  },
-
   -- ui
   {
     "NvChad/base46",
     branch = "v2.5",
     build = function()
       require("base46").load_all_highlights()
-    end,
-  },
-  {
-    "NvChad/ui",
-    branch = "v2.5",
-    lazy = false,
-    config = function()
-      require "nvchad"
-    end,
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    opts = function()
-      return { override = require "nvchad.icons.devicons" }
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "devicons")
-      require("nvim-web-devicons").setup(opts)
     end,
   },
   {
@@ -51,6 +24,7 @@ return {
       dofile(vim.g.base46_cache .. "blankline")
     end,
   },
+  --[[
   {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
@@ -60,17 +34,33 @@ return {
       require("which-key").setup(opts)
     end,
   },
+  ]]--
 
   -- file managing, picker etc
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = function()
-      return require "nvchad.configs.nvimtree"
+      return require "configs.nvimtree"
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
+    end,
+  },
+  {
+    "X3eRo0/dired.nvim",
+    cmd = { "Dired", },
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = function(_, opts)
+        require("dired").setup {
+            path_separator = "/",
+            show_banner = false,
+            show_icons = false,
+            show_hidden = true,
+            show_dot_dirs = true,
+            show_colors = true,
+        }
     end,
   },
   {
@@ -81,10 +71,8 @@ return {
     config = require("configs.telescope").config,
   },
 
-  -- async
-  "nvim-lua/plenary.nvim",
-
   -- version control
+  --[[
   {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
@@ -96,21 +84,9 @@ return {
       require("gitsigns").setup(opts)
     end,
   },
+  ]]--
 
   -- highlighting
-  {
-    "NvChad/nvim-colorizer.lua",
-    event = "User FilePost",
-    opts = { user_default_options = { names = false } },
-    config = function(_, opts)
-      require("colorizer").setup(opts)
-
-      -- execute colorizer as soon as possible
-      vim.defer_fn(function()
-        require("colorizer").attach_to_buffer(0)
-      end, 0)
-    end,
-  },
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
@@ -130,7 +106,6 @@ return {
   },
 
   -- lsp
-  --[[
   {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
@@ -139,7 +114,6 @@ return {
       require "configs.lspconfig"
     end,
   },
-  ]]--
 
   -- completion
   {
@@ -154,13 +128,14 @@ return {
       "hrsh7th/cmp-path",
     },
     opts = function()
-      return require "nvchad.configs.cmp"
+      return require "configs.cmp"
     end,
     config = function(_, opts)
       require("cmp").setup(opts)
     end,
   },
   -- snippet plugin
+  --[[
   {
     "L3MON4D3/LuaSnip",
     opts = { history = true, updateevents = "TextChanged,TextChangedI" },
@@ -169,5 +144,6 @@ return {
       require "nvchad.configs.luasnip"
     end,
   },
+  ]]--
 }
 
