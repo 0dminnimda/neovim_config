@@ -3,6 +3,11 @@ return {
   {
     "NvChad/base46",
     branch = "v2.5",
+    config = function(_, opts)
+        require("nvconfig").base46.integrations = {
+            "diffview"
+        }
+    end,
     build = function()
       require("base46").load_all_highlights()
     end,
@@ -34,7 +39,8 @@ return {
       require("which-key").setup(opts)
     end,
   },
-  ]]--
+  ]]
+  --
 
   -- file managing, picker etc
   {
@@ -50,23 +56,23 @@ return {
   },
   {
     "X3eRo0/dired.nvim",
-    cmd = { "Dired", },
+    cmd = { "Dired" },
     dependencies = { "MunifTanjim/nui.nvim" },
     config = function(_, opts)
-        require("dired").setup {
-            path_separator = "/",
-            show_banner = false,
-            show_icons = false,
-            show_hidden = true,
-            show_dot_dirs = true,
-            show_colors = true,
-        }
+      require("dired").setup {
+        path_separator = "/",
+        show_banner = false,
+        show_icons = false,
+        show_hidden = true,
+        show_dot_dirs = true,
+        show_colors = true,
+      }
     end,
   },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    cmd = "Telescope",
+    cmd = { "Telescope" },
     opts = require("configs.telescope").opts,
     config = require("configs.telescope").config,
   },
@@ -85,6 +91,16 @@ return {
     end,
   },
   ]]--
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "sindrets/diffview.nvim", -- optional - Diff integration
+    },
+    cmd = { "Neogit" },
+    config = true,
+  },
 
   -- highlighting
   {
@@ -95,8 +111,8 @@ return {
     dependencies = {
       "HiPhish/rainbow-delimiters.nvim",
     },
-    opts = require "configs.treesitter".opts,
-    config = require "configs.treesitter".config,
+    opts = require("configs.treesitter").opts,
+    config = require("configs.treesitter").config,
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
@@ -113,11 +129,11 @@ return {
       require("configs.lspconfig").defaults()
     end,
   },
-{
-  "stevearc/conform.nvim",
+  {
+    "stevearc/conform.nvim",
     opts = require("configs.conform").opts,
     config = require("configs.conform").config,
-},
+  },
 
   -- completion
   {
@@ -148,6 +164,6 @@ return {
       require "nvchad.configs.luasnip"
     end,
   },
-  ]]--
+  ]]
+  --
 }
-

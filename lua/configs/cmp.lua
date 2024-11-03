@@ -11,7 +11,8 @@ local options = {
       require("luasnip").lsp_expand(args.body)
     end,
   },
-  ]]--
+  ]]
+  --
 
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -46,7 +47,8 @@ local options = {
         fallback()
       end
     end, { "i", "s" }),
-    ]]--
+    ]]
+    --
   },
 
   sources = {

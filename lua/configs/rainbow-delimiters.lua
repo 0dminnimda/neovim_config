@@ -1,4 +1,4 @@
-local rainbow_delimiters = require 'rainbow-delimiters'
+local rainbow_delimiters = require "rainbow-delimiters"
 
 -- VSCode uses:
 -- #FED701, #DA70D5, #169FFF or #189FED
@@ -10,7 +10,7 @@ local rainbow_delimiters = require 'rainbow-delimiters'
 -- #FFB000, #00FFB0, #B000FF
 -- #A0FF00, #00A0FF, #FF00A0
 -- #FFFF00, #00FFFF, #FF00FF
-local colors = {"#FFFF00", "#00FF80", "#004FFF", "#FF0080"}
+local colors = { "#FFFF00", "#00FF80", "#004FFF", "#FF0080" }
 
 local names = {}
 for i, color in ipairs(colors) do
@@ -23,4 +23,3 @@ end
 vim.g.rainbow_delimiters = {
   highlight = names,
 }
-

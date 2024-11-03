@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = "chromodynamics",
+  theme = "chromodynamics",
 
   --[[
   hl_override = {
@@ -45,8 +45,8 @@ M.ui = {
     ["@boolean"] = { fg = "#9a79d7" },
     -- ["@constant.builtin"] = { fg = "#9a79d7" },
   },
-  ]]--
+  ]]
+  --
 }
 
 return M
-

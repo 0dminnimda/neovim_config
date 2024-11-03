@@ -32,5 +32,4 @@ vim.schedule(function()
   require "mappings"
 end)
 
-require("my_init")
-
+require "my_init"

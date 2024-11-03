@@ -140,7 +140,9 @@ local lspconfig = require "lspconfig"
 -- lsps with default config
 local servers = {
   -- "html", "cssls"
-  "pyright", "clangd", "hdl_checker"
+  "pyright",
+  "clangd",
+  "hdl_checker",
 }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -151,4 +153,3 @@ for _, lsp in ipairs(servers) do
 end
 
 return M
-
