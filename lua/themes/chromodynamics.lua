@@ -126,6 +126,8 @@ local base_16 = {
 }
 
 local highlights = {
+    EndOfBuffer = { fg = back }, -- don't show '~' for lines after EOF
+
     -- defaults
     Comment = comment_full,
     Normal = { fg = base_16.base05, bg = base_16.base00 },

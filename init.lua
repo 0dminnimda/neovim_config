@@ -49,8 +49,3 @@ load_plugins()
 
 vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF0000" })
 vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
-
--- don't show '~' for lines after EOF
-local term_back = vim.api.nvim_get_hl_by_name("Normal", true).background
-vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = term_back })
-
