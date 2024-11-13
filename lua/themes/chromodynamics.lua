@@ -140,7 +140,6 @@ local highlights = {
     QuickFixLine = { bg = base_16.base01 },
 
     -- syntax
-    -- Type
     Boolean = { fg = base_16.base09 },
     Character = { fg = base_16.base08 },
     Conditional = { fg = base_16.base0E },
@@ -161,13 +160,13 @@ local highlights = {
     Special = { fg = base_16.base0C },
     SpecialChar = { fg = base_16.base0F },
     Statement = { fg = flow_kw },
-    StorageClass = { fg = base_16.base0A },
+    StorageClass = { fg = decl_ref },
     String = { fg = str },
     Structure = { fg = base_16.base0E },
-    Tag = { fg = base_16.base0A },
-    Todo = { fg = base_16.base0A, bg = base_16.base01 },
-    Type = { fg = base_16.base0A, sp = "none" },
-    Typedef = { fg = base_16.base0A },
+    Tag = { fg = decl_ref },
+    Todo = { fg = decl_ref, bg = base_16.base01 },
+    Type = { fg = decl_ref, sp = "none" },
+    Typedef = { fg = def_clas },
     ["odinAddressOf"] = { link = "Operator" },
     ["odinDeref"] = { link = "Operator" },
 
