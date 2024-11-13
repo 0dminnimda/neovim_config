@@ -3,6 +3,9 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
+
+g.mapleader = " "
+
 o.laststatus = 3
 o.showmode = false
 
@@ -56,3 +59,33 @@ local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
+
+-- listchars=eol:↵,trail:~,tab:>-,nbsp:␣,tab:▷ ,trail:·,extends:◣,precedes:◢,nbsp:○
+--[[
+opt.listchars:append({
+  -- eol = "↵",
+  nbsp = "␣",
+  tab = "▷ ",
+  trail = "%",  --✚■
+  extends = "◣",
+  precedes = "◢",
+})
+opt.list = true
+]]--
+
+opt.number = true
+opt.relativenumber = true
+-- to put them on the same line you can use "luukvbaal/statuscol.nvim"
+
+-- force single statusline for all windows
+o.laststatus = 3
+
+-- default to convert tab to 4 spaces
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+vim.bo.softtabstop = 4
+
+-- Good defaults for search ('/')
+o.smartcase = true
+o.ignorecase = true
