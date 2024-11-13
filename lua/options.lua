@@ -89,3 +89,6 @@ vim.bo.softtabstop = 4
 -- Good defaults for search ('/')
 o.smartcase = true
 o.ignorecase = true
+
+
+vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")

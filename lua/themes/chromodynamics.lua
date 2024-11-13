@@ -127,6 +127,7 @@ local base_16 = {
 
 local highlights = {
     EndOfBuffer = { fg = back }, -- don't show '~' for lines after EOF
+    TrailingWhitespace = { bg = "#FF0000" },
 
     -- defaults
     Comment = comment_full,

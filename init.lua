@@ -46,6 +46,3 @@ require("themes")
 require("mappings")
 setup_diagnostics()
 load_plugins()
-
-vim.api.nvim_set_hl(0, "TrailingWhitespace", { bg = "#FF0000" })
-vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
