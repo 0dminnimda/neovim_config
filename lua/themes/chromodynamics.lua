@@ -1,13 +1,10 @@
 -- adopted from https://github.com/MagicStack/Chromodynamics
 
----@type Base46Table
-local M = {}
-
 local my_version = true
 local light = false
 
 -- general UI
-M.base_30 = {
+local base_30 = {
   white = "#ced4df",
   darker_black = "#05080e", -- 6% darker than black
   black = "#060606", -- usually your theme bg
@@ -41,22 +38,22 @@ M.base_30 = {
 }
 
 if light then
-  M.base_30.white = "#311b20"
-  M.base_30.darker_black = "#faf6f1"
-  M.base_30.black = "#f8f9f9"
-  M.base_30.black2 = "#ebe7e2"
-  M.base_30.one_bg = "#e2e0da"
-  M.base_30.one_bg2 = "#dbd7d2"
-  M.base_30.one_bg3 = "#d3d1cb"
-  M.base_30.grey = "#ccc8c3"
-  M.base_30.grey_fg = "#c1bfb9"
-  M.base_30.grey_fg2 = "#b8b6b0"
-  M.base_30.light_grey = "#aba7a2"
-  M.base_30.line = "#dadada"
-  M.base_30.statusline_bg = "#ececec"
-  M.base_30.lightbg = "#dbd7d2"
-  M.base_30.green = "#90C030"
-  M.base_30.vibrant_green = "#A0D040"
+  base_30.white = "#311b20"
+  base_30.darker_black = "#faf6f1"
+  base_30.black = "#f8f9f9"
+  base_30.black2 = "#ebe7e2"
+  base_30.one_bg = "#e2e0da"
+  base_30.one_bg2 = "#dbd7d2"
+  base_30.one_bg3 = "#d3d1cb"
+  base_30.grey = "#ccc8c3"
+  base_30.grey_fg = "#c1bfb9"
+  base_30.grey_fg2 = "#b8b6b0"
+  base_30.light_grey = "#aba7a2"
+  base_30.line = "#dadada"
+  base_30.statusline_bg = "#ececec"
+  base_30.lightbg = "#dbd7d2"
+  base_30.green = "#90C030"
+  base_30.vibrant_green = "#A0D040"
 end
 
 local back = "#060606" -- background
@@ -109,7 +106,7 @@ local url = heading
 
 -- syntax highlighting
 -- SEE: https://github.com/chriskempson/base16/blob/master/styling.md
-M.base_16 = {
+local base_16 = {
   base00 = back, -- Default Background
   base01 = status_bg, -- Lighter Background (Used for status bars, line number and folding marks)
   base02 = select, -- Selection Background
@@ -128,42 +125,60 @@ M.base_16 = {
   base0F = depr_fore, -- Deprecated, Opening/Closing Embedded Language Tags, e.g. `<?php ?>`
 }
 
--- Fine tune the highlighting
-M.polish_hl = {
-  ---------------------------
-  -- built in integrations --
-  ---------------------------
-  -- SEE: https://github.com/NvChad/base46/tree/v2.5/lua/base46/integrations
-  --      ^ each file here can become a key in this table
-
-  -- TODO: probably better to link some of the repeating 'groupped' ones
-
-  defaults = {
+local highlights = {
+    -- defaults
     Comment = comment_full,
-  },
+    Normal = { fg = base_16.base05, bg = base_16.base00 },
+    Cursor = { fg = base_16.base00, bg = base_16.base05 },
+    NonText = { fg = base_16.base03 },
+    SignColumn = { fg = base_16.base03 },
+    ColorColumn = { bg = base_30.black2 },
+    CursorColumn = { bg = base_16.base01 },
+    CursorLine = { bg = base_30.black2 },
+    QuickFixLine = { bg = base_16.base01 },
 
-  syntax = {
+    -- syntax
     -- Type
-    Include = { fg = include },
-    Statement = { fg = flow_kw },
-    Operator = { fg = operator },
+    Boolean = { fg = base_16.base09 },
+    Character = { fg = base_16.base08 },
+    Conditional = { fg = base_16.base0E },
     Constant = { fg = const },
+    Define = { fg = base_16.base0E, sp = "none" },
+    Delimiter = { fg = base_16.base0F },
+    Float = { fg = base_16.base09 },
+    Variable = { fg = base_16.base05 },
+    Function = { fg = base_16.base0D },
+    Identifier = { fg = base_16.base08, sp = "none" },
+    Include = { fg = include },
+    Keyword = { fg = base_16.base0E },
+    Label = { fg = base_16.base0A },
+    Number = { fg = base_16.base09 },
+    Operator = { fg = operator },
+    PreProc = { fg = base_16.base0A },
+    Repeat = { fg = base_16.base0A },
+    Special = { fg = base_16.base0C },
+    SpecialChar = { fg = base_16.base0F },
+    Statement = { fg = flow_kw },
+    StorageClass = { fg = base_16.base0A },
+    String = { fg = str },
+    Structure = { fg = base_16.base0E },
+    Tag = { fg = base_16.base0A },
+    Todo = { fg = base_16.base0A, bg = base_16.base01 },
+    Type = { fg = base_16.base0A, sp = "none" },
+    Typedef = { fg = base_16.base0A },
     ["odinAddressOf"] = { link = "Operator" },
     ["odinDeref"] = { link = "Operator" },
-  },
 
-  lsp = {
+    -- lsp
     DiagnosticHint = { fg = hint },
     DiagnosticUnnecessary = { fg = hint },
-  },
 
-  diffview = {
-    DiffviewDiffText = { bg = M.base_30.grey, fg = M.base_30.white }
-  },
+    -- diffview
+    DiffviewDiffText = { bg = base_30.grey, fg = base_30.white },
 
-  -- SEE: https://github.com/nvim-treesitter/nvim-treesitter/tree/master/queries/python
-  -- SEE: https://github.com/tree-sitter/tree-sitter-python/tree/master/queries
-  treesitter = {
+    -- treesitter
+    -- SEE: https://github.com/nvim-treesitter/nvim-treesitter/tree/master/queries/python
+    -- SEE: https://github.com/tree-sitter/tree-sitter-python/tree/master/queries
     ["@comment"] = comment_full,
     ["@constant"] = { fg = const },
     ["@ellipsis"] = { fg = const },
@@ -208,11 +223,6 @@ M.polish_hl = {
     ["@markup.link.url"] = { fg = url, underline = true },
     ["@markup.raw"] = { fg = fore },
     ["@markup.fenced_code_block_delimiter"] = { bg = md_raw_bg },
-  },
 }
 
-M.type = "dark"
-
-M = require("base46").override_theme(M, "chromodynamics")
-
-return M
+return highlights

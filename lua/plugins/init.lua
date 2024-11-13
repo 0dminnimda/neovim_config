@@ -1,18 +1,6 @@
 return {
   -- ui
   {
-    "NvChad/base46",
-    branch = "v2.5",
-    config = function(_, opts)
-        require("nvconfig").base46.integrations = {
-            "diffview"
-        }
-    end,
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
     opts = {
@@ -20,13 +8,9 @@ return {
       scope = { char = "│", highlight = "IblScopeChar" },
     },
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "blankline")
-
       local hooks = require "ibl.hooks"
       hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
       require("ibl").setup(opts)
-
-      dofile(vim.g.base46_cache .. "blankline")
     end,
   },
   --[[
@@ -35,7 +19,6 @@ return {
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "whichkey")
       require("which-key").setup(opts)
     end,
   },
@@ -50,7 +33,6 @@ return {
       return require "configs.nvimtree"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
     end,
   },
@@ -86,7 +68,6 @@ return {
       return require "nvchad.configs.gitsigns"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
       require("gitsigns").setup(opts)
     end,
   },

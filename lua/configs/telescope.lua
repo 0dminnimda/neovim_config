@@ -1,8 +1,6 @@
 local M = {}
 
 function M.opts()
-  dofile(vim.g.base46_cache .. "telescope")
-
   local opts = {
     defaults = {
       prompt_prefix = "   ",
@@ -49,7 +47,6 @@ function M.opts()
 end
 
 function M.config(_, opts)
-  dofile(vim.g.base46_cache .. "telescope")
   local telescope = require "telescope"
   telescope.setup(opts)
 

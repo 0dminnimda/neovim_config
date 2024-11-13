@@ -1,11 +1,6 @@
 local M = {}
 
 function M.opts()
-  pcall(function()
-    dofile(vim.g.base46_cache .. "syntax")
-    dofile(vim.g.base46_cache .. "treesitter")
-  end)
-
   local options = {
     ensure_installed = { "lua", "luadoc", "printf", "vim", "vimdoc" },
 
@@ -41,15 +36,12 @@ function M.opts()
       },
 
       indent = { enable = true },
-    ]]
-  --
+  ]]--
 
   return options
 end
 
 function M.config(_, opts)
-  dofile(vim.g.base46_cache .. "syntax")
-  dofile(vim.g.base46_cache .. "treesitter")
   require("nvim-treesitter.configs").setup(opts)
 end
 

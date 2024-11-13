@@ -1,4 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
 -- bootstrap lazy and all plugins
@@ -23,10 +22,6 @@ require("lazy").setup({
     end,
   },
 }, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
 
 vim.schedule(function()
   require "mappings"
