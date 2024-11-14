@@ -27,37 +27,16 @@ return {
 
   -- file managing, picker etc
   {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = function()
-      return require "configs.nvimtree"
-    end,
-    config = function(_, opts)
-      require("nvim-tree").setup(opts)
-    end,
-  },
-  {
-    "X3eRo0/dired.nvim",
-    cmd = { "Dired" },
-    dependencies = { "MunifTanjim/nui.nvim" },
-    config = function(_, opts)
-      require("dired").setup {
-        path_separator = "/",
-        show_banner = false,
-        show_icons = false,
-        show_hidden = true,
-        show_dot_dirs = true,
-        show_colors = true,
-      }
-    end,
-  },
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = { "Telescope" },
     opts = require("configs.telescope").opts,
     config = require("configs.telescope").config,
   },
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    },
 
   -- version control
   --[[
