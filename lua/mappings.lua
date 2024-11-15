@@ -56,7 +56,7 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 -- files
 map("n", "<C-n>", function()
     local path = vim.fn.expand("%:p:h")
-    require("telescope").extensions.file_browser.file_browser({ path = path })
+    require("telescope").extensions.file_browser.file_browser({ path = path, no_ignore = true, hidden = true })
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 end, { desc = "telescope file browser" })
 
