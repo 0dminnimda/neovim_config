@@ -28,7 +28,7 @@ o.mouse = "a"
 -- Numbers
 o.number = true
 o.numberwidth = 2
-o.ruler = false
+o.ruler = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"
