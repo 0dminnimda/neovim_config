@@ -22,8 +22,7 @@ return {
       require("which-key").setup(opts)
     end,
   },
-  ]]
-  --
+  ]]--
 
   -- file managing, picker etc
   {
@@ -58,18 +57,20 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
-    dependencies = {
+    --[[dependencies = {
       "HiPhish/rainbow-delimiters.nvim",
-    },
+    },]]--
     opts = require("configs.treesitter").opts,
     config = require("configs.treesitter").config,
   },
+    --[[
   {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()
       require "configs.rainbow-delimiters"
     end,
   },
+  ]]--
 
   -- lsp
   {
