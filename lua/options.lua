@@ -9,7 +9,8 @@ g.mapleader = " "
 o.laststatus = 3
 o.showmode = false
 
-o.clipboard = "unnamedplus"
+-- don't use system clipboard if not specifiaclly prompted to do so
+o.clipboard = nil  -- "unnamedplus"
 o.cursorline = true
 o.cursorlineopt = "number"
 

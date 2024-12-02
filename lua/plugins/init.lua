@@ -51,16 +51,6 @@ return {
     end,
   },
   ]]--
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "sindrets/diffview.nvim", -- optional - Diff integration
-    },
-    cmd = { "Neogit" },
-    config = true,
-  },
 
   -- highlighting
   {
@@ -124,6 +114,20 @@ return {
       require "nvchad.configs.luasnip"
     end,
   },
-  ]]
-  --
+  ]]--
+    {
+        "mg979/vim-visual-multi",
+        lazy = false,
+        init = function()
+            vim.g.VM_default_mappings = 0
+            vim.g.VM_maps = {
+                ["Find Under"]         = "<C-d>",
+                ["Find Subword Under"] = "<C-d>",
+                ["Select Cursor Down"] = "<M-C-Down>",
+                ["Select Cursor Up"]   = "<M-C-Up>",
+            }
+            --vim.g.VM_add_cursor_at_pos_no_mappings = 1
+            vim.g.VM_leader = vim.g.mapleader
+        end
+    },
 }
