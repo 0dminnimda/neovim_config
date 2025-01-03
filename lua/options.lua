@@ -81,3 +81,4 @@ opt.list = true
 
 vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
 
+vim.cmd "autocmd BufEnter *.bc set filetype=javascript"
