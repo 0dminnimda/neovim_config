@@ -217,6 +217,8 @@ local highlights = {
     ["@type.inherited"] = { fg = decl_ref },
 
     ["@type.definition"] = { link = "@variable" }, -- fore, by default
+    ["@module.python"] = { link = "@variable" },
+    ["@attribute.python"] = { fg = decl_ref },
 
     ["@constructor"] = { link = "Type" },
     ["@string.escape.regex"] = { fg = regex_esc },
