@@ -73,11 +73,13 @@ local comment_full = { fg = comment }
 local const = "#9A79D7"
 local decl_kw = "#66D9EF" -- declaration keyword
 local builtin = decl_kw
+local type = builtin
 local regex_esc = decl_kw -- escape inside regular expression
 local fstr_op = decl_kw -- f"{5!r}" - !r in here
 local flow_kw = "#E8364F" -- control flow keyword
 local operator = flow_kw
 local include = flow_kw -- include / import
+local preprocessor = flow_kw  -- #define, #if, ...
 local decl_ref = "#A6E22E" -- reference to declared name, like function or class
 local def_func = decl_ref -- name in the function definition / declaration
 local def_clas = decl_ref -- name in the class definition / declaration
@@ -141,32 +143,32 @@ local highlights = {
     QuickFixLine = { bg = base_16.base01 },
 
     -- syntax
-    Boolean = { fg = base_16.base09 },
-    Character = { fg = base_16.base08 },
+    Boolean = { fg = const },
+    Character = { fg = str },
     Conditional = { fg = base_16.base0E },
     Constant = { fg = const },
-    Define = { fg = base_16.base0E, sp = "none" },
+    Define = { fg = flow_kw, sp = "none" },
     Delimiter = { fg = base_16.base0F },
-    Float = { fg = base_16.base09 },
+    Float = { fg = const },
     Variable = { fg = base_16.base05 },
-    Function = { fg = base_16.base0D },
+    Function = { fg = def_func },
     Identifier = { fg = base_16.base08, sp = "none" },
     Include = { fg = include },
-    Keyword = { fg = base_16.base0E },
+    Keyword = { fg = flow_kw },
     Label = { fg = base_16.base0A },
-    Number = { fg = base_16.base09 },
+    Number = { fg = const },
     Operator = { fg = operator },
-    PreProc = { fg = base_16.base0A },
-    Repeat = { fg = base_16.base0A },
+    PreProc = { fg = flow_kw },
+    Repeat = { fg = flow_kw },
     Special = { fg = base_16.base0C },
-    SpecialChar = { fg = base_16.base0F },
+    SpecialChar = { fg = const },
     Statement = { fg = flow_kw },
     StorageClass = { fg = decl_ref },
     String = { fg = str },
-    Structure = { fg = base_16.base0E },
+    Structure = { fg = decl_ref },
     Tag = { fg = decl_ref },
     Todo = { fg = decl_ref, bg = base_16.base01 },
-    Type = { fg = decl_ref, sp = "none" },
+    Type = { fg = type, sp = "none" },
     Typedef = { fg = def_clas },
     ["odinAddressOf"] = { link = "Operator" },
     ["odinDeref"] = { link = "Operator" },
@@ -190,6 +192,7 @@ local highlights = {
     ["@keyword"] = { fg = flow_kw },
     ["@keyword.exception"] = { fg = flow_kw },
     ["@keyword.function"] = { fg = decl_kw },
+    ["@keyword.function.lua"] = { fg = flow_kw },
     ["@keyword.conditional"] = { fg = flow_kw },
     ["@keyword.repeat"] = { fg = flow_kw },
     ["@keyword.return"] = { fg = flow_kw },
@@ -217,7 +220,8 @@ local highlights = {
 
     ["@constructor"] = { link = "Type" },
     ["@string.escape.regex"] = { fg = regex_esc },
-    ["@function.macro"] = { fg = fstr_op },
+    ["@function.macro"] = { fg = def_func },
+    --["@function.macro"] = { fg = fstr_op },
 
     -- markdown
     ["@markup.heading"] = { fg = heading, bold = true },

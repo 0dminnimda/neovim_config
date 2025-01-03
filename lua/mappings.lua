@@ -20,9 +20,11 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
+--[[
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+]]--
 
 map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
@@ -54,29 +56,37 @@ map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- files
-map("n", "<C-n>", function()
-    local path = vim.fn.expand("%:p:h")
-    require("telescope").extensions.file_browser.file_browser({ path = path, no_ignore = true, hidden = true })
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-end, { desc = "telescope file browser" })
-
--- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
-map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
-map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
-map("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<CR>", { desc = "telescope find files" })
-map(
-  "n",
+--[[
+map("n",
   "<leader>fa",
-  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-  { desc = "telescope find all files" }
-)
+  "<cmd>FzfLua files follow=true no_ignore=true hidden=true<CR>",
+  { desc = "fzf find all files" }
+)]]--
+map("n", "<leader>nc", function()
+    local path = vim.fn.expand("%:p:h")
+    require('fzf-lua').files()
+    vim.api.nvim_feedkeys(path, "n", false)
+    --vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+end, { desc = "fzf file browser cwd" })
+map("n", "<C-n>", function()
+    require('fzf-lua').files()
+end, { desc = "fzf file browser root" })
+
+-- search
+map("n", "<leader>fw", "<cmd>FzfLua live_grep<CR>", { desc = "fzf live grep" })
+map("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "fzf find buffers" })
+--[[
+map("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>", { desc = "fzf help page" })
+map("n", "<leader>ma", "<cmd>FzfLua marks<CR>", { desc = "fzf find marks" })
+map("n", "<leader>fo", "<cmd>FzfLua oldfiles<CR>", { desc = "fzf find oldfiles" })
+]]--
+map("n", "<leader>fz", "<cmd>FzfLua current_buffer_fuzzy_find<CR>", { desc = "fzf find in current buffer" })
+--[[
+map("n", "<leader>cm", "<cmd>FzfLua git_commits<CR>", { desc = "fzf git commits" })
+map("n", "<leader>gt", "<cmd>FzfLua git_status<CR>", { desc = "fzf git status" })
+map("n", "<leader>pt", "<cmd>FzfLua terms<CR>", { desc = "fzf pick hidden term" })
+]]--
+map("n", "<leader>ff", "<cmd>FzfLua files hidden=true<CR>", { desc = "fzf find files" })
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
@@ -109,12 +119,12 @@ map("v", "<leader>/", "gc", { desc = "comment toggle" })
 -- continuation of diagrantics from my_init.lua
 
 -- Show all diagnostics on current line in floating window
-map("n", "<leader>s", function()
+map("n", "<leader>ds", function()
   vim.diagnostic.open_float { focus = false }
 end, { noremap = true, silent = true })
 -- Go to next diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
-map("n", "<leader>n", function()
+map("n", "<leader>dn", function()
   vim.diagnostic.goto_next {
     severity = { min = vim.diagnostic.severity.WARN },
     float = { focus = false },
@@ -122,7 +132,7 @@ map("n", "<leader>n", function()
 end, { noremap = true, silent = true })
 -- Go to prev diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
-map("n", "<leader>p", function()
+map("n", "<leader>dp", function()
   vim.diagnostic.goto_prev {
     severity = { min = vim.diagnostic.severity.WARN },
     float = { focus = false },

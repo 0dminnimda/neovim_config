@@ -6,6 +6,7 @@ local g = vim.g
 
 g.mapleader = " "
 
+-- force single statusline for all windows
 o.laststatus = 3
 o.showmode = false
 
@@ -14,20 +15,24 @@ o.clipboard = nil  -- "unnamedplus"
 o.cursorline = true
 o.cursorlineopt = "number"
 
--- Indenting
+-- default to convert tab to 4 spaces
 o.expandtab = true
-o.shiftwidth = 2
+o.shiftwidth = 4
 o.smartindent = true
-o.tabstop = 2
-o.softtabstop = 2
+o.tabstop = 4
+o.softtabstop = 4
 
 opt.fillchars = { eob = " " }
+o.mouse = "a"
+
+-- Good defaults for search ('/')
 o.ignorecase = true
 o.smartcase = true
-o.mouse = "a"
 
 -- Numbers
 o.number = true
+-- opt.number = true
+opt.relativenumber = true
 o.numberwidth = 2
 o.ruler = true
 
@@ -74,22 +79,5 @@ opt.listchars:append({
 opt.list = true
 ]]--
 
-opt.number = true
-opt.relativenumber = true
--- to put them on the same line you can use "luukvbaal/statuscol.nvim"
-
--- force single statusline for all windows
-o.laststatus = 3
-
--- default to convert tab to 4 spaces
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-vim.bo.softtabstop = 4
-
--- Good defaults for search ('/')
-o.smartcase = true
-o.ignorecase = true
-
-
 vim.fn.matchadd("TrailingWhitespace", "\\s\\+$")
+

@@ -13,10 +13,13 @@ local load_plugins = function()
     local lazy_config = require "configs.lazy"
 
     require("lazy").setup({
-      {
         lazy = false,
         import = "plugins",
-      },
+        performance = {
+	        rtp = {
+	            reset = false
+    	    }
+	    }
     }, lazy_config)
 end
 

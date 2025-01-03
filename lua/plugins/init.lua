@@ -1,5 +1,6 @@
 return {
   -- ui
+  --[[
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "User FilePost",
@@ -13,6 +14,7 @@ return {
       require("ibl").setup(opts)
     end,
   },
+  ]]--
   --[[
   {
     "folke/which-key.nvim",
@@ -25,16 +27,14 @@ return {
   ]]--
 
   -- file managing, picker etc
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    cmd = { "Telescope" },
-    opts = require("configs.telescope").opts,
-    config = require("configs.telescope").config,
-  },
     {
-        "nvim-telescope/telescope-file-browser.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+        "ibhagwan/fzf-lua",
+        cmd = { "FzfLua" },
+        opts = {
+            files = {
+                git_icons = false,
+            },
+        },
     },
 
   -- version control
@@ -53,26 +53,16 @@ return {
 
   -- highlighting
   {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    --[[dependencies = {
-      "HiPhish/rainbow-delimiters.nvim",
-    },]]--
-    opts = require("configs.treesitter").opts,
-    config = require("configs.treesitter").config,
+        "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+        build = ":TSUpdate",
+        opts = require("configs.treesitter").opts,
+        config = require("configs.treesitter").config,
   },
-    --[[
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    config = function()
-      require "configs.rainbow-delimiters"
-    end,
-  },
-  ]]--
 
   -- lsp
+    --[[
   {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
@@ -80,11 +70,7 @@ return {
       require("configs.lspconfig").defaults()
     end,
   },
-  {
-    "stevearc/conform.nvim",
-    opts = require("configs.conform").opts,
-    config = require("configs.conform").config,
-  },
+  ]]--
 
   -- completion
   {
@@ -101,21 +87,8 @@ return {
     opts = function()
       return require "configs.cmp"
     end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
   },
   -- snippet plugin
-  --[[
-  {
-    "L3MON4D3/LuaSnip",
-    opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-    config = function(_, opts)
-      require("luasnip").config.set_config(opts)
-      require "nvchad.configs.luasnip"
-    end,
-  },
-  ]]--
     {
         "mg979/vim-visual-multi",
         lazy = false,

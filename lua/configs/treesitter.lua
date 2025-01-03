@@ -5,8 +5,9 @@ function M.opts()
     ensure_installed = { "lua", "luadoc", "printf", "vim", "vimdoc" },
 
     highlight = {
-      enable = true,
-      use_languagetree = true,
+        enable = true,
+        --disable = { "query", },
+        use_languagetree = true,
     },
 
     indent = { enable = true },
@@ -18,7 +19,7 @@ function M.opts()
     "cpp",
     "regex",
     "comment",
-    "nim",
+    -- "nim",
     "markdown",
     "markdown_inline",
     "html",
@@ -28,15 +29,6 @@ function M.opts()
   })
 
   options.additional_vim_regex_highlighting = true
-
-  --[[
-      highlight = {
-        enable = true,
-        use_languagetree = true,
-      },
-
-      indent = { enable = true },
-  ]]--
 
   return options
 end
