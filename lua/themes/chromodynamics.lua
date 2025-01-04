@@ -155,7 +155,7 @@ local highlights = {
     Identifier = { fg = base_16.base08, sp = "none" },
     Include = { fg = include },
     Keyword = { fg = flow_kw },
-    Label = { fg = base_16.base0A },
+    Label = { fg = flow_kw },
     Number = { fg = const },
     Operator = { fg = operator },
     PreProc = { fg = flow_kw },
