@@ -64,9 +64,7 @@ map("n",
 )]]--
 map("n", "<leader>nc", function()
     local path = vim.fn.expand("%:p:h")
-    require('fzf-lua').files()
-    vim.api.nvim_feedkeys(path, "n", false)
-    --vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+    require('fzf-lua').files({ cwd = path })
 end, { desc = "fzf file browser cwd" })
 map("n", "<C-n>", function()
     require('fzf-lua').files()
