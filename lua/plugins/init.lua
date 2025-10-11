@@ -26,6 +26,10 @@ return {
   },
   ]]--
 
+
+  -- TODO: add nvim-hlslens to fix [>99/>99]
+
+
   -- file managing, picker etc
     {
         "ibhagwan/fzf-lua",
