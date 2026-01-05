@@ -3,7 +3,7 @@ return {
   --[[
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
+    event = "BufReadPost",
     opts = {
       indent = { char = "│", highlight = "IblChar" },
       scope = { char = "│", highlight = "IblScopeChar" },
@@ -45,7 +45,7 @@ return {
   --[[
   {
     "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
+    event = { "BufReadPost", "BufNewFile" },
     opts = function()
       return require "nvchad.configs.gitsigns"
     end,
@@ -58,7 +58,7 @@ return {
   -- highlighting
   {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPost", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile", "BufEnter" },
         cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
         build = ":TSUpdate",
         opts = require("configs.treesitter").opts,
@@ -66,10 +66,10 @@ return {
   },
 
   -- lsp
-    --[[
+  --[[
   {
     "neovim/nvim-lspconfig",
-    event = "User FilePost",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("configs.lspconfig").defaults()
     end,
