@@ -137,4 +137,4 @@ map("n", "<leader>dp", function()
   }
 end, { noremap = true, silent = true })
 
-map("n", "<C-d>", "<Plug>(VM-Find-Under)")
+

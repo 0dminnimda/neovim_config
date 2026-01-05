@@ -94,18 +94,50 @@ return {
   },
   -- snippet plugin
     {
-        "mg979/vim-visual-multi",
-        lazy = false,
-        init = function()
-            vim.g.VM_default_mappings = 0
-            vim.g.VM_maps = {
-                ["Find Under"]         = "<C-d>",
-                ["Find Subword Under"] = "<C-d>",
-                ["Select Cursor Down"] = "<M-C-Down>",
-                ["Select Cursor Up"]   = "<M-C-Up>",
-            }
-            --vim.g.VM_add_cursor_at_pos_no_mappings = 1
-            vim.g.VM_leader = vim.g.mapleader
+        "jake-stewart/multicursor.nvim",
+        branch = "1.0",
+        config = function()
+            local mc = require("multicursor-nvim")
+            mc.setup()
+
+            local set = vim.keymap.set
+
+            -- C+D to find next word and add cursor
+            set({"n", "v"}, "<C-d>", function() mc.matchAddCursor(1) end)
+            
+            -- Skip current match
+            set({"n", "v"}, "<Leader><C-d>", function() mc.matchSkipCursor(1) end)
+
+            -- Add cursors above/below
+            set({"n", "v"}, "<C-Up>", function() mc.lineAddCursor(-1) end)
+            set({"n", "v"}, "<C-Down>", function() mc.lineAddCursor(1) end)
+
+            -- Mouse support
+            set("n", "<C-LeftMouse>", mc.handleMouse)
+            set("n", "<C-LeftDrag>", mc.handleMouseDrag)
+            set("n", "<C-LeftRelease>", mc.handleMouseRelease)
+
+            -- Align cursors
+            set("n", "<Leader>a", mc.alignCursors)
+
+            -- Restore cursors
+            set("n", "<Leader>gv", mc.restoreCursors)
+
+            -- Mappings that only apply when multiple cursors are active
+            mc.addKeymapLayer(function(layerSet)
+                -- Clear cursors with Esc
+                layerSet("n", "<Esc>", function()
+                    if not mc.cursorsEnabled() then
+                        mc.enableCursors()
+                    else
+                        mc.clearCursors()
+                    end
+                end)
+                
+                -- Navigation between cursors
+                layerSet({"n", "v"}, "<Left>", mc.prevCursor)
+                layerSet({"n", "v"}, "<Right>", mc.nextCursor)
+            end)
         end
     },
 }
