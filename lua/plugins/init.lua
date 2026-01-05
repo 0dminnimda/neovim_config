@@ -96,6 +96,7 @@ return {
     {
         "jake-stewart/multicursor.nvim",
         branch = "1.0",
+        lazy = false,
         config = function()
             local mc = require("multicursor-nvim")
             mc.setup()
@@ -104,7 +105,7 @@ return {
 
             -- C+D to find next word and add cursor
             set({"n", "v"}, "<C-d>", function() mc.matchAddCursor(1) end)
-            
+
             -- Skip current match
             set({"n", "v"}, "<Leader><C-d>", function() mc.matchSkipCursor(1) end)
 
@@ -133,7 +134,7 @@ return {
                         mc.clearCursors()
                     end
                 end)
-                
+
                 -- Navigation between cursors
                 layerSet({"n", "v"}, "<Left>", mc.prevCursor)
                 layerSet({"n", "v"}, "<Right>", mc.nextCursor)
