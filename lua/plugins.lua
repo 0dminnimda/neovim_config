@@ -135,9 +135,9 @@ return {
                     end
                 end)
 
-                -- Navigation between cursors
-                layerSet({"n", "v"}, "<Left>", mc.prevCursor)
-                layerSet({"n", "v"}, "<Right>", mc.nextCursor)
+                -- -- Navigation between cursors
+                -- layerSet({"n", "v"}, "<Leader><Left>", mc.prevCursor)
+                -- layerSet({"n", "v"}, "<Leader><Right>", mc.nextCursor)
             end)
         end
     },
