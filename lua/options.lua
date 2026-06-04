@@ -92,4 +92,11 @@ vim.filetype.add({
   },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "jai",
+  callback = function()
+    vim.bo.commentstring = "// %s"
+    vim.bo.comments = "s1:/*,mb:*,ex:*/,://"
+  end,
+})
 
