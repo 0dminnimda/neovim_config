@@ -17,6 +17,7 @@ function M.opts()
     "python",
     "c",
     "cpp",
+    "jai",
     "regex",
     "comment",
     -- "nim",
@@ -34,6 +35,18 @@ function M.opts()
 end
 
 function M.config(_, opts)
+  require("nvim-treesitter.install").compilers = { "zig" }
+
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.jai = {
+    install_info = {
+      url = "https://github.com/constantitus/tree-sitter-jai",
+      files = { "src/parser.c", "src/scanner.c" },
+      revision = "c61176d276761e6ee44a86b018446a1608b47b99",
+    },
+    filetype = "jai",
+  }
+
   require("nvim-treesitter.configs").setup(opts)
 end
 
