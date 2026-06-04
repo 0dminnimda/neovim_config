@@ -85,3 +85,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pattern = {"*.bc"},
     callback = function() vim.bo.filetype = "javascript" end,
 })
+
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
+    pattern = {"*.jai"},
+    callback = function() vim.bo.filetype = "cpp" end,
+})
